@@ -51,5 +51,15 @@ if (allOnStock) {
   No exemplo acima o registro de uma venda incluir muitas outras atividades que são delegadas ao cliente (que está tentando cadastrar um cliente)
   Usando-se um Facade, a implementação da venda torna-se mais simples para o cliente;
 */
+import SaleFacade from './SaleFacade';
 
+const vendaFacade = new Sale(antonio, [arroz, feijao]);
+const easyEmail = new EmailSender();
 
+const saleFacade = new SaleFacade(vendaFacade, [arroz, feijao], stock, antonio, easyEmail);
+saleFacade.registerSale();
+
+/* 
+  usando-se um Facade consegue-se tirar do cliente a resposabilidade de manipular manualmente
+  todas as complexidades de efetuar uma determinada ação, no caso, a venda.
+*/
