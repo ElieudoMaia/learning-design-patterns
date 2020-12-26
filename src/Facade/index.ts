@@ -1,3 +1,5 @@
+import EmailSender from './EmailSenders/email_sender';
+
 import Client from './Client';
 import Product from './Product';
 import Sale from './Sale';
@@ -13,11 +15,41 @@ const stock = new Stock();
 
 stock.stockEntry(feijao, 100);
 stock.stockEntry(arroz, 200);
-stock.stockEntry(carne_moida, 25);
+stock.stockEntry(carne_moida, 0);
 
 // Tendo o cliente e os produtos dísponíveis, a intenção agora é registar uma venda desses produtos para o cliente!
+/* 
+    O processo de venda inclui:
+        Verificar se há quantidade em estoque
+        Retirar a quantidade do produto vendido do estoque
+        Enviar um email para o cliente com a confirmação da compra
+*/
 
-const venda = new Sale(antonio, [feijao, arroz, carne_moida]);
-stock.outOfStock(feijao, 2);
-stock.outOfStock(arroz, 5);
-stock.outOfStock(carne_moida, 1);
+// Implementação da venda do produto;
+
+const hasBean = stock.productIndexOnStock(feijao);
+const hasRice = stock.productIndexOnStock(arroz);
+const hasMeat = stock.productIndexOnStock(carne_moida);
+
+const allOnStock = [hasBean, hasRice, hasMeat].every((item) => item >= 0);
+
+if (allOnStock) {
+  const venda = new Sale(antonio, [feijao, arroz, carne_moida]);
+  stock.outOfStock(feijao, 2);
+  stock.outOfStock(arroz, 5);
+  stock.outOfStock(carne_moida, 1);
+
+  console.log('venda realizada', venda);
+
+  const emailSender = new EmailSender();
+  emailSender.sendEmail('emaildaempresa@empresa.com', antonio.getEmail());
+} else {
+  console.log('Algum dos produtos está em falta');
+}
+
+/*
+  No exemplo acima o registro de uma venda incluir muitas outras atividades que são delegadas ao cliente (que está tentando cadastrar um cliente)
+  Usando-se um Facade, a implementação da venda torna-se mais simples para o cliente;
+*/
+
+

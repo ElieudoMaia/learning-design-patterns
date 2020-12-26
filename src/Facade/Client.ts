@@ -3,7 +3,7 @@ class Client {
   private cpf: string;
   private email: string;
 
-  constructor(name: string, cpf: string, email: email) {
+  constructor(name: string, cpf: string, email: string) {
     this.name = name;
     this.cpf = cpf;
     this.email = email;
