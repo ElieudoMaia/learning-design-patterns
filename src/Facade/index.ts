@@ -3,7 +3,7 @@ import Product from './Product';
 import Sale from './Sale';
 import Stock from './Stock';
 
-const antonio = new Client('Antônio', '000.000.000-00')
+const antonio = new Client('Antônio', '000.000.000-00', 'test@teste.com');
 
 const feijao = new Product('Feijão', 7.20);
 const arroz = new Product('Arroz', 4.36);
