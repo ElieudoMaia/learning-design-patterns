@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/facade/teste.ts",
+    "facade": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/Facade/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
