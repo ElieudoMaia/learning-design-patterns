@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "facade": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/Facade/index.ts",
+    "singleton": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/Singleton/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
